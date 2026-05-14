@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Repro Collect</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div id="popup-container">
+    <div class="checkbox">
+      <input type="checkbox" id="chbx-recording">
+      <label id="record-chbx-label" for="chbx-recording">Video Recording</label>
+    </div>
+    <div class="checkbox">
+      <input type="checkbox" id="chbx-profiling">
+      <label for="chbx-profiling">Code Profiling</label>
+    </div>
+    <button id="start">Start Capture</button>
+    <div class="hint">Open DevTools (F12) for native HAR</div>
+    <button id="stop" disabled>Stop Capture</button>
+    <button id="save" disabled>Export Logs</button>
+    <button id="view">Open Viewer</button>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

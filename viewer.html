@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Repro Collect — Log Viewer</title>
+  <link rel="stylesheet" href="viewer.css">
+</head>
+<body>
+  <header>
+    <span class="logo">Repro Collect</span>
+    <span id="session-info" class="session-info"></span>
+    <div class="header-actions">
+      <label class="btn-import" title="Load log files from disk (console_logs_*.json, network_*.har)">
+        Import files
+        <input type="file" id="file-input" accept=".json,.har" multiple>
+      </label>
+    </div>
+  </header>
+
+  <nav>
+    <button class="tab-btn active" data-tab="console">
+      Console <span id="console-count" class="badge">0</span>
+    </button>
+    <button class="tab-btn" data-tab="network">
+      Network <span id="network-count" class="badge">0</span>
+    </button>
+  </nav>
+
+  <!-- Drop zone — shown when no data is loaded -->
+  <div id="drop-zone">
+    <div class="drop-inner">
+      <div class="drop-icon">⬇</div>
+      <p class="drop-title">Drop log files here</p>
+      <p class="drop-hint">
+        <code>console_logs_*.json</code> &nbsp;·&nbsp;
+        <code>network_*.har</code> &nbsp;·&nbsp;
+        <code>network_logs_*.json</code>
+      </p>
+      <p class="drop-hint">or use <strong>Import files</strong> above</p>
+    </div>
+  </div>
+
+  <!-- Console panel -->
+  <div id="console-panel" class="panel hidden">
+    <div class="toolbar">
+      <div class="filter-group" id="level-filters">
+        <button class="filter-btn active" data-level="all">All</button>
+        <button class="filter-btn" data-level="error">Error</button>
+        <button class="filter-btn" data-level="warning">Warn</button>
+        <button class="filter-btn" data-level="info">Info</button>
+        <button class="filter-btn" data-level="log">Log</button>
+        <button class="filter-btn" data-level="verbose">Verbose</button>
+      </div>
+      <input type="search" id="console-search" placeholder="Filter by message or URL…">
+    </div>
+    <div class="table-wrapper">
+      <table id="console-table">
+        <thead>
+          <tr>
+            <th class="col-seq">#</th>
+            <th class="col-time">Time</th>
+            <th class="col-level">Level</th>
+            <th class="col-message">Message</th>
+            <th class="col-url">URL</th>
+          </tr>
+        </thead>
+        <tbody id="console-body"></tbody>
+      </table>
+      <div id="console-empty" class="empty hidden">No console logs to show.</div>
+    </div>
+  </div>
+
+  <!-- Network panel -->
+  <div id="network-panel" class="panel hidden">
+    <div class="toolbar">
+      <div class="filter-group" id="status-filters">
+        <button class="filter-btn active" data-status="all">All</button>
+        <button class="filter-btn" data-status="2xx">2xx</button>
+        <button class="filter-btn" data-status="3xx">3xx</button>
+        <button class="filter-btn" data-status="4xx">4xx</button>
+        <button class="filter-btn" data-status="5xx">5xx</button>
+        <button class="filter-btn" data-status="0">Failed</button>
+      </div>
+      <input type="search" id="network-search" placeholder="Filter by URL…">
+    </div>
+    <div class="table-wrapper">
+      <table id="network-table">
+        <thead>
+          <tr>
+            <th class="col-status">Status</th>
+            <th class="col-method">Method</th>
+            <th class="col-url">URL</th>
+            <th class="col-time">Time (ms)</th>
+            <th class="col-size">Size</th>
+          </tr>
+        </thead>
+        <tbody id="network-body"></tbody>
+      </table>
+      <div id="network-empty" class="empty hidden">No network requests to show.</div>
+    </div>
+  </div>
+
+  <script src="viewer.js"></script>
+</body>
+</html>
