@@ -15,7 +15,8 @@ A Chrome extension for collecting browser diagnostics during bug reproduction â€
 ## Installation
 
 ### Chrome Web Store
-*(coming soon)*
+
+Install directly from the [Chrome Web Store](https://chromewebstore.google.com/detail/repro-collect/bgemhangajmkhelnjojpnlobppkbackh).
 
 ### Manual (development)
 
